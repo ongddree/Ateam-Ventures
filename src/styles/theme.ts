@@ -4,8 +4,14 @@ const theme: DefaultTheme = {
   // basicWidth: "320px",
 
   color: {
-    red: "#1c1f25",
-    blue: "#fff",
+    WHITE : "#ffffff",
+    BLACK : "#000000",
+    BLUE : "#1565C0", // header
+    SKY : "#2196F3", // button
+    GRAY : "#E5E5E5", // border
+    DARKGRAY : "#C2C2C2", // offToggle
+    LIGHTBLUE : "#2196F3", // onToggle
+    ORANGE : "#FFA000", // orangebutton
   },
 };
 
