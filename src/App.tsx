@@ -2,6 +2,8 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/global-styles";
 import GlobalFont from "./styles/global-font";
 import { theme } from "./styles/theme";
+import MainBoard from "@/components/main-board/main-board";
+import Header from "@/components/header";
 
 function App() {
   return (
@@ -9,7 +11,8 @@ function App() {
       <GlobalStyle />
       <GlobalFont />
       <Div></Div>
-      <div className="App">hello world~!</div>
+      <Header />
+      <MainBoard />
     </ThemeProvider>
   );
 }
