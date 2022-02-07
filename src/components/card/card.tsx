@@ -1,6 +1,7 @@
 import React from "react";
 import { IRequests } from "@/utils/api/data-types";
 import styled from "styled-components";
+import { theme } from "@/styles/theme";
 
 const Card = (props: { items: IRequests }) => {
   return (
@@ -30,6 +31,9 @@ const Card = (props: { items: IRequests }) => {
             <Contents>{props.items.material.join(", ")}</Contents>
           </li>
         </ListWarp>
+        <BrnWarp>
+          <ButtonLeft /> <ButtonRight />
+        </BrnWarp>
       </CardWarp>
     </Container>
   );
@@ -105,4 +109,26 @@ const Category = styled.span`
 
 const Contents = styled.span`
   width: 70%;
+`;
+
+const BrnWarp = styled.div`
+  button {
+    border: 1px solid ${theme.color.SKY};
+    height: 36px;
+    line-height: 36px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+`;
+
+const ButtonLeft = styled.button`
+  width: 100px;
+  background-color: ${theme.color.SKY};
+`;
+
+const ButtonRight = styled.button`
+  width: 100px;
+  color: ${theme.color.WHITE}
+  background-color: ${theme.color.SKY}
 `;

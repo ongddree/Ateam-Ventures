@@ -13,9 +13,7 @@ const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
 
   const getData = async () => {
-    const json = await await (
-      await fetch("http://localhost:4000/requests")
-    ).json();
+    const json = await (await fetch("http://localhost:4000/requests")).json();
     setData(json);
   };
 

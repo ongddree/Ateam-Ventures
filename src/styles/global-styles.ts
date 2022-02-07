@@ -24,6 +24,14 @@ const GlobalStyle = createGlobalStyle`
   list-style: none;
   }
 
+  button {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  margin: 0;
+  padding: 0;
+}
+
 `;
 
 export default GlobalStyle;
