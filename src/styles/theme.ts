@@ -9,8 +9,10 @@ const theme: DefaultTheme = {
     BLUE : "#1565C0", // header
     SKY : "#2196F3", // button
     GRAY : "#E5E5E5", // border
-    DARKGRAY : "#C2C2C2", // offToggle
+    LIGHTGRAY : "#F5F5F5", // offToggle
+    DARKGRAY : "#C2C2C2", // offToggleBG
     LIGHTBLUE : "#2196F3", // onToggle
+    LIGHTSKY : "#BBDEFB", // onToggleBG
     ORANGE : "#FFA000", // orangebutton
   },
 };
