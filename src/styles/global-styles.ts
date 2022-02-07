@@ -13,6 +13,17 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
+  body{
+        font-family: "Font-test"; // 폰트 설정
+        
+    }
+
+  ol,
+  ul {
+  list-style: none;
+  }
+
 `;
 
 export default GlobalStyle;
