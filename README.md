@@ -1,46 +1,248 @@
-# Getting Started with Create React App
+# 상품 등록 관리 페이지
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 소개
 
-## Available Scripts
+요청서 필터 페이지
 
-In the project directory, you can run:
+## 팀원 소개
 
-### `yarn start`
+🏃‍ [민지연](https://github.com/ichbinmin2)<br/>
+🏃‍ [박서윤](https://github.com/seoyuuun)<br/>
+🏃‍ [양다혜](https://github.com/dahye-program)<br/>
+🏃‍ [박서영](https://github.com/ongddree) (팀장)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 배포 주소
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[배포 사이트 바로가기]( )
 
-### `yarn test`
+## 과제 구현 목록
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1  (박서윤)
 
-### `yarn build`
+☑️ 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. (양다혜)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+☑️ 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. (박서영)
 
-### `yarn eject`
+☑️ 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+###  (민지연)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+☑️ 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 공통 컴포넌트
 
-## Learn More
+#### 민지연
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+☑️ 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br/>
+
+#### 박서영
+
+☑️ 
+ 
+
+<br/>
+
+
+
+## 기능별 영상
+
+### 1 노출 및 판매 기간 설정 (박서윤)<br/>
+
+- ![]()
+
+### 2. 상품 등록 (양다혜)
+
+- ![]()
+
+### 3. 상품 옵션 (박서영)
+
+-   <br/> <br/>
+  ![]()
+
+
+### 4. 상품 정보 고시 (민지연)
+
+-   <br/> <br/>
+  ![]()
+
+## 과제 후기
+
+### 🙋‍♀️ 박서윤
+
+<br/>
+
+### 🙋‍♀️ 양다혜
+
+<br/>
+
+### 🙋‍♀️ 박서영
+
+<br/>
+
+### 🙋‍♀️ 민지연
+
+(프로젝트 회고 주소 첨부 예정)
+
+
+## 프로젝트 구조 설명
+
+```bash
+.
+├── App.css
+├── App.js
+├── components
+│   ├── common
+│   │   ├── Button.jsx
+│   │   ├── Input.jsx
+│   │   ├── InsertImage.jsx
+│   │   ├── InsertImagePreview.jsx
+│   │   ├── Radio.jsx
+│   │   ├── Toggle.jsx
+│   │   ├── datepicker
+│   │   └── index.js
+│   ├── infoNotice
+│   │   ├── InfoNotice.jsx
+│   │   └── infoNoticeForm
+│   ├── layout
+│   │   ├── Contentwrap.jsx
+│   │   ├── navbar
+│   │   └── sidebar
+│   ├── productExpoSalesPeriod
+│   │   ├── ExposurePeriodSet.jsx
+│   │   └── SalesPeriodSet.jsx
+│   ├── productInfo
+│   │   └── ProductInfo.jsx
+│   ├── productOrderSet
+│   │   ├── ProductOrderStart.jsx
+│   │   └── ProductPickUp.jsx
+│   ├── productPreOrderReservation
+│   │   └── PreOrderReservetionSet.jsx
+│   └── productoption
+│       ├── Optionset.jsx
+│       ├── Suboption.jsx
+│       └── index.js
+├── hooks
+│   ├── SubmitForm.jsx
+│   ├── useForm.js
+│   └── validate.js
+├── index.css
+├── index.js
+├── logo.svg
+├── pages
+│   ├── admin.jsx
+│   └── adminSection
+│       ├── ExpoSalesPeriodSet.jsx
+│       ├── addoption.jsx
+│       ├── pagesInfoNotice.jsx
+│       ├── productInfo.jsx
+│       └── productorder.jsx
+└── style
+    ├── globalstyle.js
+    └── theme.js
+
+
+```
+
+### 데이터 get 명세
+
+```
+{
+  "requests": [
+    {
+      "id": 1,
+      "title": "자동차 시제품 제작",
+      "client": "A 고객사",
+      "due": "2020.12.14",
+      "count": 2,
+      "amount": 100,
+      "method": ["밀링", "선반"],
+      "material": ["알루미늄"],
+      "status": "대기중"
+    },
+    {
+      "id": 2,
+      "title": "비행기 시제품 제작",
+      "client": "B 고객사",
+      "due": "2020.12.13",
+      "count": 2,
+      "amount": 100,
+      "method": ["선반"],
+      "material": ["탄소강", "강철"],
+      "status": "상담중"
+    },
+    {
+      "id": 3,
+      "title": "기차 시제품 제작",
+      "client": "C 고객사",
+      "due": "2020.12.12",
+      "count": 1,
+      "amount": 20,
+      "method": ["선반"],
+      "material": ["구리"],
+      "status": "대기중"
+    },
+    {
+      "id": 4,
+      "title": "자전거 시제품 제작",
+      "client": "D 고객사",
+      "due": "2020.12.11",
+      "count": 1,
+      "amount": 45,
+      "method": ["선반"],
+      "material": ["스테인리스강"],
+      "status": "대기중"
+    },
+    {
+      "id": 5,
+      "title": "헬리콥터 시제품 제작",
+      "client": "E 업체",
+      "due": "2020.12.10",
+      "count": 2,
+      "amount": 2,
+      "method": ["밀링"],
+      "material": ["알루미늄", "탄소강"],
+      "status": "대기중"
+    },
+    {
+      "id": 6,
+      "title": "전동 킥보드 시제품 제작",
+      "client": "F 업체",
+      "due": "2020.12.09",
+      "docs": 1,
+      "amount": 20,
+      "method": ["밀링"],
+      "material": ["강철"],
+      "status": "대기중"
+    }
+  ]
+}
+```
+
+<br/>
+
+## 설치 및 시작하는 법
+
+**프로젝트 클론**
+
+```
+$ git clone 
+```
+
+**패키지 설치**
+
+```
+$ yarn
+```
+
+**서버 실행**
+
+```
+$ yarn start
+```
