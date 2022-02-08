@@ -15,6 +15,7 @@ const theme: DefaultTheme = {
     LIGHTSKY: "#BBDEFB", // onToggleBG
     ORANGE: "#FFA000", // orangebutton
     FONTCOLOR: "#323D45", // main board font color
+    FONTGRAY: "#939FA5", // sub font color
   },
 
   size: {
