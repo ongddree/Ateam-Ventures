@@ -8,9 +8,11 @@ import { RequestsArray } from "@/utils/api/data-types";
 // style
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
+// import Toggle from "../common/toggle";
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
+  // const [isToggled, setIsToggled] = useState<boolean>(false);
 
   const getData = async () => {
     const json = await (await fetch("http://localhost:4000/requests")).json();
@@ -21,11 +23,15 @@ const MainBoard = () => {
     getData();
   }, []);
 
-  const CardList = data?.map((data, idx) => (
-    <React.Fragment key={idx}>
-      <Card items={data} />
-    </React.Fragment>
-  ));
+  // const onToggle = (event: ChangeEvent<HTMLInputElement>): void => {
+  //   setIsToggled(!isToggled);
+  // };
+
+  // useEffect(() => {
+  //   console.log("toggle 되고 있습니다");
+  // }, [isToggled]);
+
+  // console.log("main Board isToggled", isToggled);
 
   return (
     <Container>
@@ -37,11 +43,19 @@ const MainBoard = () => {
               <span>파트너님에게 딱 맞는 요청서를 찾아보세요</span>
             </TitleWarp>
           </FilterWarp>
+          {/* <Toggle isToggled={isToggled} onToggle={onToggle} /> */}
           {/* 여기에 filter, toggle  */}
         </Header>
 
         <CardWarp>
-          {CardList}
+          {data?.map((data, idx) => (
+            <React.Fragment key={idx}>
+              <Card
+                items={data}
+                // isToggled={isToggled}
+              />
+            </React.Fragment>
+          ))}
           {/* 빈 카드인 경우 page */}
         </CardWarp>
       </Warpper>
@@ -152,5 +166,3 @@ const CardWarp = styled.div`
     border: 1px solid red;
   }
 `;
-
-const MediaWarp = styled.div``;

@@ -3,6 +3,7 @@ import { IRequests } from "@/utils/api/data-types";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 
+// const Card = (props: { items: IRequests; isToggled: boolean }) => {
 const Card = (props: { items: IRequests }) => {
   return (
     <Container>
@@ -13,9 +14,11 @@ const Card = (props: { items: IRequests }) => {
             <h3>{props.items.client}</h3>
             <span>{props.items.due}</span>
           </TitleWarp>
+          {/* {props.isToggled === true && ( */}
           <IsConsult>
             <span>상담 중</span>
           </IsConsult>
+          {/* )} */}
         </Header>
 
         <Diveder></Diveder>
