@@ -11,7 +11,7 @@ const Card = (props: { items: IRequests }) => {
           <TitleWarp>
             <h1>{props.items.title}</h1>
             <h3>{props.items.client}</h3>
-            <span>{props.items.due}</span>
+            <span>{props.items.due}까지 납기</span>
           </TitleWarp>
           <IsConsult status={props.items.status}>
             <span>{props.items.status}</span>
@@ -36,14 +36,14 @@ const Card = (props: { items: IRequests }) => {
             <Contents>{props.items.material.join(", ")}</Contents>
           </li>
         </ListWarp>
-        <BrnWarp>
+        <BtnWarp>
           <ButtonLeft>
             <span>요청 내역 보기</span>
           </ButtonLeft>
           <ButtonRight>
             <span>채팅하기</span>
           </ButtonRight>
-        </BrnWarp>
+        </BtnWarp>
       </CardWarp>
     </Container>
   );
@@ -59,7 +59,7 @@ const Container = styled.div`
 const CardWarp = styled.div`
   width: 366px;
   height: 356px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${theme.color.GRAY};
   border-radius: 4px;
   padding: 16px;
   display: flex;
@@ -99,7 +99,7 @@ const TitleWarp = styled.div`
   }
   span {
     font-size: 14px;
-    color: #939fa5;
+    color: ${theme.color.FONTGRAY};
   }
 `;
 
@@ -109,8 +109,8 @@ const IsConsult = styled.div<{ status: string }>`
   display: ${(props) => (props.status === "상담중" ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #ffa000;
+  background: ${theme.color.WHITE};
+  border: 1px solid ${theme.color.ORANGE};
   box-sizing: border-box;
   border-radius: 12px;
 
@@ -122,14 +122,14 @@ const IsConsult = styled.div<{ status: string }>`
     align-items: center;
     justify-content: center;
     text-align: right;
-    color: #ffa000;
+    color: ${theme.color.ORANGE};
   }
 `;
 
 const Diveder = styled.div`
   width: 334px;
   height: 0px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${theme.color.GRAY};
 
   @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
     width: 288px;
@@ -158,7 +158,7 @@ const Contents = styled.span`
   align-items: center;
 `;
 
-const BrnWarp = styled.div`
+const BtnWarp = styled.div`
   button {
     border: 1px solid ${theme.color.SKY};
     height: 32px;
