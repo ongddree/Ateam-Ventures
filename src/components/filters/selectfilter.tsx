@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ArrowDropDownGray } from '@/assets/image';
 import { ArrowDropDownWhite } from '@/assets/image';
+import { theme } from '@/styles/theme';
 
 const METHODS = [
   { id: 0, name: '밀링' },
@@ -138,8 +139,8 @@ const Btnselect = styled.button<FocusType>`
   padding: 9px 41px 9px 12px;
   display: flex;
   font-size: 12px;
-  background-color: #fff;
-  border: 1px solid #939fa5;
+  background-color: ${theme.color.WHITE};
+  border: 1px solid ${theme.color.FONTGRAY};
   box-sizing: border-box;
   border-radius: 4px;
   cursor: pointer;
@@ -149,11 +150,13 @@ const Btnselect = styled.button<FocusType>`
 
   background: url(${(props) => (props.select ? props.active : props.inactive)})
     center right 13.5px no-repeat
-    ${(props) => (props.select ? '#1565c0' : '#fff')};
+    ${(props) =>
+      props.select ? `${theme.color.BLUE}` : `${theme.color.WHITE}`};
 
-  color: ${(props) => (props.select ? '#fff' : '#000')};
+  color: ${(props) =>
+    props.select ? `${theme.color.WHITE}` : `${theme.color.BLACK}`};
   :hover {
-    border: 1px solid #2196f3;
+    border: 1px solid ${theme.color.LIGHTBLUE};
   }
 `;
 
@@ -167,15 +170,15 @@ const Itemlist = styled.ul<{ mode: number }>`
   margin: 0;
   width: 130px;
   top: 36px;
-  border: 1px solid #939fa5;
-  background-color: #fff;
+  border: 1px solid ${theme.color.FONTGRAY};
+  background-color: ${theme.color.WHITE};
   box-sizing: border-box;
   border-radius: 4px;
   padding: 17px 12px;
 `;
 
 const Item = styled.li`
-  color: #323d45;
+  color: ${theme.color.FONTCOLOR};
   font-size: 14px;
   font-weight: 500;
 
