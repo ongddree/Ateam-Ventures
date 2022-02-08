@@ -22,11 +22,10 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "node server.js",
+    "dev": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "mockserver": "json-server --watch --delay 500 --port 4000 src/utils/api/mockdata.json",
-    "dev": "concurrently \"yarn start\" \"yarn mockserver\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
