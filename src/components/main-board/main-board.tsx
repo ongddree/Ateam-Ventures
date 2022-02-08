@@ -39,7 +39,11 @@ const MainBoard = () => {
           </FilterWarp>
           {/* 여기에 filter, toggle  */}
         </Header>
-        <CardWarp>{CardList}</CardWarp>
+
+        <CardWarp>
+          {CardList}
+          {/* 빈 카드인 경우 page */}
+        </CardWarp>
       </Warpper>
     </Container>
   );
@@ -48,29 +52,28 @@ const MainBoard = () => {
 export default MainBoard;
 
 const Container = styled.section`
+  margin-top: 70px;
   width: 100vw;
   height: 100vh;
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const Warpper = styled.div`
-  /* width: 69%; */
-  width: 1130.01px;
+  /* width: 1130.01px; */
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid green;
 `;
 
 const Header = styled.div`
   width: 100%;
   height: 100%;
   color: ${theme.color.FONTCOLOR};
+  margin-bottom: 96px;
   /* border: 5px solid yellow; */
 `;
 
@@ -79,7 +82,7 @@ const FilterWarp = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 500px;
+  height: 192px;
 `;
 
 const TitleWarp = styled.div`
@@ -112,5 +115,42 @@ const CardWarp = styled.div`
   gap: 16px;
   width: 100%;
   height: inherit;
-  border: 1px solid red;
+
+  @media screen and (max-width: 1200px) {
+    display: grid;
+    grid-template-rows: repeat(2, 356px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (min-width: 825px) and (max-width: 991px) {
+    display: grid;
+    grid-template-rows: repeat(2, 356px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 825px) {
+    display: grid;
+    grid-template-rows: repeat(2, 356px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media screen and (max-width: 767px) {
+    display: grid;
+    grid-template-rows: repeat(2, 356px);
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    display: grid;
+    grid-template-rows: repeat(2, 356px);
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    border: 1px solid red;
+  }
 `;
+
+const MediaWarp = styled.div``;
