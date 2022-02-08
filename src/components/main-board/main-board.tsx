@@ -59,21 +59,6 @@ const MainBoard = () => {
   // filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환
   // indexOf() 메서드는 배열의 특정한 값을 갖는 문자열을 갖고 있는 인덱스 번호를 반환
 
-  const hadleFilteredMethod = (event: React.FormEvent<HTMLInputElement>) => {
-    // const { name } = event.target as HTMLInputElement;
-
-    if (checkedMethod.length === 0) {
-      setData(data);
-    } else {
-      for (let i = 0; i < checkedMethod.length; i++) {
-        const filterResult = data?.filter((e) =>
-          checkedMethod.includes(e.method[i])
-        );
-        setData(filterResult);
-      }
-    }
-  };
-
   const getData = async () => {
     const json = await (await fetch('http://localhost:4000/requests')).json();
     setData(json);
@@ -116,8 +101,6 @@ const MainBoard = () => {
               </ToggleWarp>
             </Display>
           </FilterWarp>
-
-          {/* 여기에 filter, toggle  */}
         </Header>
         <CardWarp>
           {data
@@ -128,21 +111,24 @@ const MainBoard = () => {
                 return e;
               }
             })
-            .filter((item) => {
+            .filter((item, idx) => {
               if (checkedMethod.length === 0) return true;
-              else if (checkedMethod.length < METHODS.length) {
-                for (let i = 0; i < checkedMethod.length; i++) {
-                  return item.method.includes(checkedMethod[i]);
-                }
-              } else if ((checkedMethod.length = METHODS.length)) return true;
+
+              let methodIntersection = item.method.filter((x) =>
+                checkedMethod.includes(x)
+              );
+
+              if (methodIntersection.length === checkedMethod.length)
+                return true;
             })
-            .filter((item) => {
+            .filter((item, idx) => {
               if (checkedMaterial.length === 0) return true;
-              else if (checkedMaterial.length < MATERIALS.length) {
-                for (let i = 0; i < checkedMaterial.length; i++) {
-                  return item.material.includes(checkedMaterial[i]);
-                }
-              } else if ((checkedMaterial.length = MATERIALS.length))
+
+              let materialIntersection = item.material.filter((x) =>
+                checkedMaterial.includes(x)
+              );
+
+              if (materialIntersection.length === checkedMaterial.length)
                 return true;
             })
             .map((data, idx) => (
@@ -150,8 +136,15 @@ const MainBoard = () => {
                 <Card items={data} />
               </React.Fragment>
             ))}
-          {/* 빈 카드인 경우 page */}
         </CardWarp>
+
+        {/* `조건에 맞는 견적 요청이 없습니다` 페이지는 style 완료했습니다.
+        이 부분 조건식으로 처리해주시면 됩니다. *
+        {!data && (
+          <EmptyBox>
+            <span>조건에 맞는 견적 요청이 없습니다.</span>
+          </EmptyBox>
+        )} */}
       </Warpper>
     </Container>
   );
@@ -176,10 +169,14 @@ const Warpper = styled.div`
 `;
 
 const Header = styled.div`
-  width: 100%;
+  width: 1130px;
   height: 192px;
   color: ${theme.color.FONTCOLOR};
   margin-bottom: 32px;
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 const FilterWarp = styled.div`
@@ -196,6 +193,7 @@ const FilterWarp = styled.div`
 const Display = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
     flex-direction: column;
@@ -249,8 +247,9 @@ const SelectWarp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-bottom: 20px;
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const CardWarp = styled.div`
@@ -295,5 +294,26 @@ const CardWarp = styled.div`
     grid-template-columns: repeat(1, 1fr);
     gap: 16px;
     margin-bottom: 16px;
+  }
+`;
+
+// `조건에 맞는 견적 요청이 없습니다` style component
+const EmptyBox = styled.div`
+  width: 1130px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${theme.color.DARKGRAY};
+  border-radius: 4px;
+
+  > span {
+    font-size: 14px;
+    line-height: 20px;
+    color: ${theme.color.FONTGRAY};
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
   }
 `;
