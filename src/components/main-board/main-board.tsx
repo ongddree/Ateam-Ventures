@@ -14,13 +14,49 @@ import SelectFilter from '../filters/selectfilter';
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
+
+  const [checkedMethod, setCheckedMethod] = React.useState<string[]>([]);
+  const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
   // const [isToggled, setIsToggled] = useState<boolean>(false);
+
+  const handleCheckMethod = (event: React.FormEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target as HTMLInputElement;
+    if (checked) {
+      setCheckedMethod([...checkedMethod, name]);
+    } else {
+      setCheckedMethod(checkedMethod.filter((option) => option !== name));
+    }
+  };
+
+  const handleCheckMaterial = (event: React.FormEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target as HTMLInputElement;
+
+    if (checked) {
+      setCheckedMaterial([...checkedMaterial, name]);
+    } else {
+      setCheckedMaterial(checkedMaterial.filter((option) => option !== name));
+    }
+  };
+
+  console.log(checkedMethod);
+  console.log(checkedMaterial);
 
   const [isConsulting, setIsConsulting] = useState(false);
 
   const toggleConsulting = () => {
     isConsulting ? setIsConsulting(false) : setIsConsulting(true);
-    console.log(isConsulting);
+  };
+
+  const showFilteredMethod = () => {
+    if (checkedMethod.length === 0) {
+      setData(data);
+    } else {
+      setData(
+        Array.from(data).filter((data) => {
+          return checkedMethod.name.indexOf(data.method) !== -1;
+        })
+      );
+    }
   };
 
   const getData = async () => {
@@ -53,7 +89,14 @@ const MainBoard = () => {
             </TitleWarp>
           </FilterWarp>
           <Toggle onToggle={toggleConsulting} />
-          <SelectFilter></SelectFilter>
+          <SelectFilter
+            checkedMethod={checkedMethod}
+            setCheckedMethod={setCheckedMethod}
+            handleCheckMethod={handleCheckMethod}
+            checkedMaterial={checkedMaterial}
+            setCheckedMaterial={setCheckedMaterial}
+            handleCheckMaterial={handleCheckMaterial}
+          />
           {/* 여기에 filter, toggle  */}
         </Header>
 

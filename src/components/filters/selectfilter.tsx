@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const METHODS = [
   { id: 0, name: '밀링' },
-  { id: 1, name: '선방' },
+  { id: 1, name: '선반' },
 ];
 
 const MATERIALS = [
@@ -14,9 +14,16 @@ const MATERIALS = [
   { id: 4, name: '강철' },
 ];
 
-const SelectFilter = () => {
-  const [checkedMethod, setCheckedMethod] = React.useState<string[]>([]);
-  const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
+interface typeMethod {
+  checkedMethod: string[];
+  setCheckedMethod: React.Dispatch<React.SetStateAction<string[]>>;
+  handleCheckMethod: (event: React.FormEvent<HTMLInputElement>) => void;
+  checkedMaterial: string[];
+  setCheckedMaterial: React.Dispatch<React.SetStateAction<string[]>>;
+  handleCheckMaterial: (event: React.FormEvent<HTMLInputElement>) => void;
+}
+
+const SelectFilter = (props: typeMethod) => {
   const [materialToggle, setMaterialToggle] = useState(false);
   const [methodToggle, setMethodToggle] = useState(false);
 
@@ -28,34 +35,15 @@ const SelectFilter = () => {
     methodToggle ? setMethodToggle(false) : setMethodToggle(true);
   };
 
-  const handleCheckMethod = (event: React.FormEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target as HTMLInputElement;
-    if (checked) {
-      setCheckedMethod([...checkedMethod, name]);
-    } else {
-      setCheckedMethod(checkedMethod.filter((option) => option !== name));
-    }
-  };
-
-  const handleCheckMaterial = (event: React.FormEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target as HTMLInputElement;
-
-    if (checked) {
-      setCheckedMaterial([...checkedMaterial, name]);
-    } else {
-      setCheckedMaterial(checkedMaterial.filter((option) => option !== name));
-    }
-  };
-
-  console.log('method', checkedMethod);
-  console.log('material', checkedMaterial);
+  // console.log('method', checkedMethod);
+  // console.log('material', checkedMaterial);
 
   return (
     <Wrapselect>
       <Selectbox>
         <Btnselect onClick={handleMethodToggle}>
           가공방식
-          <Countitem>({checkedMethod.length})</Countitem>
+          <Countitem>({props.checkedMethod.length})</Countitem>
         </Btnselect>
         <Itemlist mode={methodToggle}>
           {METHODS.map((option) => {
@@ -64,8 +52,8 @@ const SelectFilter = () => {
                 <Input
                   type="checkbox"
                   name={option.name}
-                  onChange={handleCheckMethod}
-                  checked={checkedMethod.includes(option.name)}
+                  onChange={props.handleCheckMethod}
+                  checked={props.checkedMethod.includes(option.name)}
                 />
                 {option.name}
               </Item>
@@ -76,7 +64,7 @@ const SelectFilter = () => {
       <Selectbox>
         <Btnselect onClick={handleMaterialToggle}>
           재료
-          <Countitem>({checkedMaterial.length})</Countitem>
+          <Countitem>({props.checkedMaterial.length})</Countitem>
         </Btnselect>
         <Itemlist mode={materialToggle}>
           {MATERIALS.map((option) => {
@@ -85,8 +73,8 @@ const SelectFilter = () => {
                 <Input
                   type="checkbox"
                   name={option.name}
-                  onChange={handleCheckMaterial}
-                  checked={checkedMaterial.includes(option.name)}
+                  onChange={props.handleCheckMaterial}
+                  checked={props.checkedMaterial.includes(option.name)}
                 />
                 {option.name}
               </Item>
