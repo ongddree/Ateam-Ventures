@@ -11,14 +11,9 @@ import { theme } from '@/styles/theme';
 import Toggle from '../common/toggle';
 import SelectFilter from '../filters/selectfilter';
 import TagButton from '../common/tagbutton';
-// import Filters from '../filters/filters';
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
-
-  // const [isToggled, setIsToggled] = useState<boolean>(false);
-  const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
-
   const [isConsulting, setIsConsulting] = useState(false);
 
   const toggleConsulting = () => {
