@@ -9,6 +9,8 @@ import { RequestsArray } from "@/utils/api/data-types";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 import Toggle from "../common/toggle";
+import SelectFilter from "../filters/selectfilter";
+// import Filters from '../filters/filters';
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
@@ -44,6 +46,9 @@ const MainBoard = () => {
 
             {/* 여기에 filter, toggle */}
           </FilterWarp>
+          <Toggle onToggle={toggleConsulting} />
+          <SelectFilter></SelectFilter>
+          {/* 여기에 filter, toggle  */}
         </Header>
 
         <CardWarp>
