@@ -7,11 +7,17 @@ const Card = (props: { items: IRequests }) => {
   return (
     <Container>
       <CardWarp>
-        <TitleWarp>
-          <h1>{props.items.title}</h1>
-          <h3>{props.items.client}</h3>
-          <span>{props.items.due}</span>
-        </TitleWarp>
+        <Header>
+          <TitleWarp>
+            <h1>{props.items.title}</h1>
+            <h3>{props.items.client}</h3>
+            <span>{props.items.due}</span>
+          </TitleWarp>
+          <IsConsult>
+            <span>상담 중</span>
+          </IsConsult>
+        </Header>
+
         <Diveder></Diveder>
         <ListWarp>
           <li>
@@ -32,7 +38,12 @@ const Card = (props: { items: IRequests }) => {
           </li>
         </ListWarp>
         <BrnWarp>
-          <ButtonLeft /> <ButtonRight />
+          <ButtonLeft>
+            <span>요청 내역 보기</span>
+          </ButtonLeft>
+          <ButtonRight>
+            <span>채팅하기</span>
+          </ButtonRight>
         </BrnWarp>
       </CardWarp>
     </Container>
@@ -57,7 +68,13 @@ const CardWarp = styled.div`
   justify-content: flex-start;
 `;
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const TitleWarp = styled.div`
+  width: 100%;
   height: 108px;
   h1 {
     position: static;
@@ -65,11 +82,9 @@ const TitleWarp = styled.div`
     height: 24px;
     left: 0px;
     top: 0px;
-
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
-
     display: flex;
     align-items: center;
   }
@@ -81,6 +96,29 @@ const TitleWarp = styled.div`
   span {
     font-size: 14px;
     color: #939fa5;
+  }
+`;
+
+const IsConsult = styled.div`
+  width: 55px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #ffa000;
+  box-sizing: border-box;
+  border-radius: 12px;
+
+  span {
+    height: 100%;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+    color: #ffa000;
   }
 `;
 
@@ -99,36 +137,53 @@ const ListWarp = styled.ul`
   li {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
   }
 `;
 
 const Category = styled.span`
-  width: 30%;
+  width: 70px;
 `;
 
 const Contents = styled.span`
-  width: 70%;
+  display: flex;
+  align-items: center;
 `;
 
 const BrnWarp = styled.div`
   button {
     border: 1px solid ${theme.color.SKY};
-    height: 36px;
-    line-height: 36px;
+
+    height: 32px;
     flex-shrink: 0;
-    border-radius: 8px;
-    text-align: center;
+    border-radius: 4px;
+
+    span {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
 `;
 
 const ButtonLeft = styled.button`
-  width: 100px;
-  background-color: ${theme.color.SKY};
+  background: ${theme.color.SKY};
+  width: 108px;
+  height: inherit;
+  text-align: center;
+  margin-right: 8px;
+
+  span {
+    color: ${theme.color.WHITE};
+  }
 `;
 
 const ButtonRight = styled.button`
-  width: 100px;
-  color: ${theme.color.WHITE}
-  background-color: ${theme.color.SKY}
+  width: 76px;
+  background: ${theme.color.WHITE};
+
+  span {
+    color: ${theme.color.SKY};
+  }
 `;
