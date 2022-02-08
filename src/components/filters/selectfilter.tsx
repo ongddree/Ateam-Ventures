@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const METHODS = [
+export const METHODS = [
   { id: 0, name: '밀링' },
   { id: 1, name: '선반' },
 ];
 
-const MATERIALS = [
+export const MATERIALS = [
   { id: 0, name: '알루미늄' },
   { id: 1, name: '탄소강' },
   { id: 2, name: '구리' },

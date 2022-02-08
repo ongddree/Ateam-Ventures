@@ -11,6 +11,8 @@ import { theme } from '@/styles/theme';
 import Toggle from '../common/toggle';
 import SelectFilter from '../filters/selectfilter';
 import TagButton from '../common/tagbutton';
+import { METHODS } from '../filters/selectfilter';
+import { MATERIALS } from '../filters/selectfilter';
 // import Filters from '../filters/filters';
 
 const MainBoard = () => {
@@ -64,22 +66,13 @@ const MainBoard = () => {
       setData(data);
     } else {
       for (let i = 0; i < checkedMethod.length; i++) {
-        if (!!data?.[i].method.filter((x) => !checkedMethod.includes(x))) {
-          setData(data);
-        }
+        const filterResult = data?.filter((e) =>
+          checkedMethod.includes(e.method[i])
+        );
+        setData(filterResult);
       }
     }
   };
-
-  console.log('data', data);
-  console.log(
-    '필터조건',
-    data?.filter((item) => {
-      item.method.map((temp) => {
-        console.log(temp);
-      });
-    })
-  );
 
   const getData = async () => {
     const json = await (await fetch('http://localhost:4000/requests')).json();
@@ -94,10 +87,6 @@ const MainBoard = () => {
     setCheckedMethod([]);
     setCheckedMaterial([]);
   };
-
-  // console.log('data', data?.[0].method.includes('밀링'));
-  console.log('checkedMethod', checkedMethod);
-  console.log('checkedMaterial', checkedMaterial);
 
   return (
     <Container>
@@ -130,7 +119,6 @@ const MainBoard = () => {
 
           {/* 여기에 filter, toggle  */}
         </Header>
-
         <CardWarp>
           {data
             ?.filter((e) => {
@@ -140,13 +128,23 @@ const MainBoard = () => {
                 return e;
               }
             })
-            // ?.filter((e) => {
-            //   if (true) {
-            //     return e.method === checkedMethod;
-            //   } else {
-            //     return e;
-            //   }
-            // })
+            .filter((item) => {
+              if (checkedMethod.length === 0) return true;
+              else if (checkedMethod.length < METHODS.length) {
+                for (let i = 0; i < checkedMethod.length; i++) {
+                  return item.method.includes(checkedMethod[i]);
+                }
+              } else if ((checkedMethod.length = METHODS.length)) return true;
+            })
+            .filter((item) => {
+              if (checkedMaterial.length === 0) return true;
+              else if (checkedMaterial.length < MATERIALS.length) {
+                for (let i = 0; i < checkedMaterial.length; i++) {
+                  return item.material.includes(checkedMaterial[i]);
+                }
+              } else if ((checkedMaterial.length = MATERIALS.length))
+                return true;
+            })
             .map((data, idx) => (
               <React.Fragment key={idx}>
                 <Card items={data} />

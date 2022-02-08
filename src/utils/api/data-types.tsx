@@ -12,9 +12,7 @@ export interface IRequests {
   status: string;
 }
 
-export interface RequestsArray extends Array<IRequests> {
-  method: string[];
-}
+export interface RequestsArray extends Array<IRequests> {}
 
 export type IGetData = React.Dispatch<
   React.SetStateAction<RequestsArray | null>
