@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { theme } from "@/styles/theme";
 import Toggle from "../common/toggle";
 import SelectFilter from "../filters/selectfilter";
+import TagButton from "../common/tagbutton";
 // import Filters from '../filters/filters';
 
 const MainBoard = () => {
@@ -30,6 +31,8 @@ const MainBoard = () => {
     getData();
   }, []);
 
+  const onReset = () => {};
+
   return (
     <Container>
       <Warpper>
@@ -39,16 +42,18 @@ const MainBoard = () => {
               <h3>들어온 요청</h3>
               <span>파트너님에게 딱 맞는 요청서를 찾아보세요</span>
             </TitleWarp>
-            <ToggleWarp>
-              <Toggle onToggle={toggleConsulting} />
-              <span>상담 중인 요청만 보기</span>
-            </ToggleWarp>
 
-            {/* 여기에 filter, toggle */}
+            <Display>
+              <SelectWarp>
+                <SelectFilter></SelectFilter>
+                <TagButton onReset={onReset} />
+              </SelectWarp>
+              <ToggleWarp>
+                <Toggle onToggle={toggleConsulting} />
+                <span>상담 중인 요청만 보기</span>
+              </ToggleWarp>
+            </Display>
           </FilterWarp>
-          <Toggle onToggle={toggleConsulting} />
-          <SelectFilter></SelectFilter>
-          {/* 여기에 filter, toggle  */}
         </Header>
 
         <CardWarp>
@@ -102,11 +107,18 @@ const FilterWarp = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
 
   @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
     align-items: flex-start;
+  }
+`;
+
+const Display = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    flex-direction: column;
   }
 `;
 
@@ -153,6 +165,14 @@ const TitleWarp = styled.div`
   }
 `;
 
+const SelectWarp = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+`;
+
 const CardWarp = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 356px);
@@ -191,8 +211,9 @@ const CardWarp = styled.div`
 
   @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
     display: grid;
-    grid-template-rows: repeat(2, 356px);
+    grid-template-rows: repeat(1, 356px);
     grid-template-columns: repeat(1, 1fr);
     gap: 16px;
+    margin-bottom: 16px;
   }
 `;
