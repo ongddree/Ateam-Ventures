@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
-import styled from 'styled-components';
-import { theme } from '@/styles/theme';
-import { ResetLOGO } from '@/assets/image';
+import React, { ReactElement } from "react";
+import styled from "styled-components";
+import { theme } from "@/styles/theme";
+import { ResetLOGO } from "@/assets/image";
 
 interface RefreshClick {
   onReset: () => void;
@@ -19,7 +19,15 @@ function TagButton({ onReset }: RefreshClick): ReactElement {
 export default TagButton;
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
+  margin-left: 24px;
+
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    display: none;
+  }
 `;
 
 const ResetBtn = styled.button`

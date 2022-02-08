@@ -10,18 +10,19 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <GlobalFont />
-      <Div></Div>
       <Header />
-      <MainBoard />
+      <PaddingWarp>
+        <MainBoard />
+      </PaddingWarp>
     </ThemeProvider>
   );
 }
 
 export default App;
 
-const Div = styled.div`
-  border: none;
-  // 이런 식으로 theme울 props 받아서 사용하면 됩니다.
-  background-color: ${({ theme }) => theme.color.red};
-  color: white;
+const PaddingWarp = styled.div`
+  // 이런 식으로 theme을 props 받아서 사용하면 됩니다.
+  /* background-color: ${({ theme }) => theme.color.red}; */
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+  }
 `;
