@@ -61,7 +61,7 @@ const CardWarp = styled.div`
   height: 356px;
   border: 1px solid ${theme.color.GRAY};
   border-radius: 4px;
-  padding: 16px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -137,6 +137,8 @@ const Diveder = styled.div`
 `;
 
 const ListWarp = styled.ul`
+  padding: 0;
+  margin-top: 32px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -146,16 +148,23 @@ const ListWarp = styled.ul`
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 8px;
   }
 `;
 
 const Category = styled.span`
   width: 70px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 20px;
 `;
 
 const Contents = styled.span`
   display: flex;
   align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
 `;
 
 const BtnWarp = styled.div`
