@@ -1,9 +1,8 @@
-import React from "react";
-import { IRequests } from "@/utils/api/data-types";
-import styled from "styled-components";
-import { theme } from "@/styles/theme";
+import React from 'react';
+import { IRequests } from '@/utils/api/data-types';
+import styled from 'styled-components';
+import { theme } from '@/styles/theme';
 
-// const Card = (props: { items: IRequests; isToggled: boolean }) => {
 const Card = (props: { items: IRequests }) => {
   return (
     <Container>
@@ -15,8 +14,8 @@ const Card = (props: { items: IRequests }) => {
             <span>{props.items.due}</span>
           </TitleWarp>
           {/* {props.isToggled === true && ( */}
-          <IsConsult>
-            <span>상담 중</span>
+          <IsConsult status={props.items.status}>
+            <span>{props.items.status}</span>
           </IsConsult>
           {/* )} */}
         </Header>
@@ -33,11 +32,11 @@ const Card = (props: { items: IRequests }) => {
           </li>
           <li>
             <Category>가공방식</Category>
-            <Contents>{props.items.method.join(", ")}</Contents>
+            <Contents>{props.items.method.join(', ')}</Contents>
           </li>
           <li>
             <Category>재료</Category>
-            <Contents>{props.items.material.join(", ")}</Contents>
+            <Contents>{props.items.material.join(', ')}</Contents>
           </li>
         </ListWarp>
         <BrnWarp>
@@ -102,10 +101,10 @@ const TitleWarp = styled.div`
   }
 `;
 
-const IsConsult = styled.div`
+const IsConsult = styled.div<{ status: string }>`
   width: 55px;
   height: 24px;
-  display: flex;
+  display: ${(props) => (props.status === '상담중' ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   background: #ffffff;

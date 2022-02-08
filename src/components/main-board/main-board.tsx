@@ -1,21 +1,29 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // component
-import Card from "../card/card";
+import Card from '../card/card';
 // type
-import { RequestsArray } from "@/utils/api/data-types";
+import { RequestsArray } from '@/utils/api/data-types';
 // style
-import styled from "styled-components";
-import { theme } from "@/styles/theme";
-// import Toggle from "../common/toggle";
+import styled from 'styled-components';
+import { theme } from '@/styles/theme';
+import Toggle from '../common/toggle';
+// import Filters from '../filters/filters';
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
   // const [isToggled, setIsToggled] = useState<boolean>(false);
 
+  const [isConsulting, setIsConsulting] = useState(false);
+
+  const toggleConsulting = () => {
+    isConsulting ? setIsConsulting(false) : setIsConsulting(true);
+    console.log(isConsulting);
+  };
+
   const getData = async () => {
-    const json = await (await fetch("http://localhost:4000/requests")).json();
+    const json = await (await fetch('http://localhost:4000/requests')).json();
     setData(json);
   };
 
@@ -43,19 +51,27 @@ const MainBoard = () => {
               <span>파트너님에게 딱 맞는 요청서를 찾아보세요</span>
             </TitleWarp>
           </FilterWarp>
-          {/* <Toggle isToggled={isToggled} onToggle={onToggle} /> */}
+          <Toggle onToggle={toggleConsulting} />
           {/* 여기에 filter, toggle  */}
         </Header>
 
         <CardWarp>
-          {data?.map((data, idx) => (
-            <React.Fragment key={idx}>
-              <Card
-                items={data}
-                // isToggled={isToggled}
-              />
-            </React.Fragment>
-          ))}
+          {data
+            ?.filter((e) => {
+              if (isConsulting) {
+                return e.status === '상담중';
+              } else {
+                return e;
+              }
+            })
+            .map((data, idx) => (
+              <React.Fragment key={idx}>
+                <Card
+                  items={data}
+                  // isToggled={isToggled}
+                />
+              </React.Fragment>
+            ))}
           {/* 빈 카드인 경우 page */}
         </CardWarp>
       </Warpper>
