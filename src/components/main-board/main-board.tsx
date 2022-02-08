@@ -1,20 +1,24 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // component
-import Card from "../card/card";
+import Card from '../card/card';
 // type
-import { RequestsArray } from "@/utils/api/data-types";
+import { RequestsArray } from '@/utils/api/data-types';
 // style
-import styled from "styled-components";
-import { theme } from "@/styles/theme";
-import Toggle from "../common/toggle";
-import SelectFilter from "../filters/selectfilter";
-import TagButton from "../common/tagbutton";
+import styled from 'styled-components';
+import { theme } from '@/styles/theme';
+import Toggle from '../common/toggle';
+import SelectFilter from '../filters/selectfilter';
+import TagButton from '../common/tagbutton';
 // import Filters from '../filters/filters';
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
+
+  // const [isToggled, setIsToggled] = useState<boolean>(false);
+  const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
+
   const [isConsulting, setIsConsulting] = useState(false);
 
   const toggleConsulting = () => {
@@ -23,7 +27,7 @@ const MainBoard = () => {
   };
 
   const getData = async () => {
-    const json = await (await fetch("http://localhost:4000/requests")).json();
+    const json = await (await fetch('http://localhost:4000/requests')).json();
     setData(json);
   };
 
@@ -55,12 +59,11 @@ const MainBoard = () => {
             </Display>
           </FilterWarp>
         </Header>
-
         <CardWarp>
           {data
             ?.filter((e) => {
               if (isConsulting) {
-                return e.status === "상담중";
+                return e.status === '상담중';
               } else {
                 return e;
               }
