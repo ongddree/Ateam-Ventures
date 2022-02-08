@@ -11,15 +11,10 @@ import { theme } from '@/styles/theme';
 import Toggle from '../common/toggle';
 import SelectFilter from '../filters/selectfilter';
 import TagButton from '../common/tagbutton';
-import { METHODS } from '../filters/selectfilter';
-import { MATERIALS } from '../filters/selectfilter';
-// import Filters from '../filters/filters';
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>();
   const [isConsulting, setIsConsulting] = useState(false);
-
-  const [isChecked, setIsChecked] = useState(0);
 
   const [checkedMethod, setCheckedMethod] = React.useState<string[]>([]);
   const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
@@ -28,7 +23,6 @@ const MainBoard = () => {
     isConsulting ? setIsConsulting(false) : setIsConsulting(true);
   };
 
-  // method 담아주는 함수
   const handleCheckMethod = (event: React.FormEvent<HTMLInputElement>) => {
     const { name, checked } = event.target as HTMLInputElement;
     // checked
@@ -41,7 +35,6 @@ const MainBoard = () => {
     }
   };
 
-  // Material 담아주는 함수
   const handleCheckMaterial = (event: React.FormEvent<HTMLInputElement>) => {
     const { name, checked } = event.target as HTMLInputElement;
 
@@ -55,12 +48,10 @@ const MainBoard = () => {
     }
   };
 
-  // data => 배열[{}]
-  // filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환
-  // indexOf() 메서드는 배열의 특정한 값을 갖는 문자열을 갖고 있는 인덱스 번호를 반환
-
   const getData = async () => {
-    const json = await (await fetch('http://localhost:4000/requests')).json();
+    const json = await (
+      await fetch('https://onbasicventures.herokuapp.com/')
+    ).json();
     setData(json);
   };
 

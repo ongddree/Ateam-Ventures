@@ -44,9 +44,6 @@ const SelectFilter = (props: typeMethod) => {
     methodToggle ? setMethodToggle(0) : setMethodToggle(1);
   };
 
-  // console.log('method', checkedMethod);
-  // console.log('material', checkedMaterial);
-
   return (
     <Wrapselect>
       <Selectbox>
