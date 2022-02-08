@@ -1,31 +1,28 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import styled from "styled-components";
 import { theme } from "@/styles/theme";
 
+interface IToggle {
+  isToggled: boolean | true;
+  onToggle: () => void;
+}
 
-function Toggle({ ...props }): ReactElement {
-  const [isToggled, setIsToggled] = useState<boolean>(false);
-
-  const onToggle = () => {
-    setIsToggled(!isToggled);
-  };
-
-  useEffect(() => {
-    console.log(isToggled);
-  }, [isToggled]);
-
+function Toggle(props: {
+  isToggled: IToggle;
+  onToggle: IToggle;
+}): ReactElement {
   return (
     <ToggleContainer>
       <input
         type="checkbox"
-        checked={isToggled}
-        onChange={onToggle}
+        // checked={props.isToggled}
+        // onChange={props.onToggle}
         {...props}
       />
       <ToggleSpan />
     </ToggleContainer>
   );
-};
+}
 
 export default Toggle;
 
@@ -52,7 +49,7 @@ const ToggleContainer = styled.label`
 const ToggleSpan = styled.span`
   position: absolute;
   cursor: pointer;
-  background-color: ${theme.color.DARKGRAY}; 
+  background-color: ${theme.color.DARKGRAY};
   border-radius: 25px;
   top: 0;
   right: 0;

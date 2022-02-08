@@ -3,11 +3,7 @@ import React from "react";
 import Toggle from "@/components/common/toggle";
 
 const Filters = () => {
-  return (
-    <>
-      <Toggle />
-    </>
-  );
+  return <>{/* <Toggle /> */}</>;
 };
 
 export default Filters;
