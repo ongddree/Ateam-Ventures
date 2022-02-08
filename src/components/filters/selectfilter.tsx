@@ -181,7 +181,7 @@ const Item = styled.li`
   color: ${theme.color.FONTCOLOR};
   font-size: 14px;
   font-weight: 500;
-
+  display: flex;
   box-sizing: border-box;
 
   & + & {
@@ -189,4 +189,6 @@ const Item = styled.li`
   }
 `;
 
-const Input = styled.input``;
+const Input = styled.input`
+  margin-right: 10px;
+`;
