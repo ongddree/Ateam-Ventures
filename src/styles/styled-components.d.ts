@@ -5,5 +5,6 @@ declare module "styled-components" {
     // basicWidth: string;
 
     color: { [key in Color]: string };
+    size: { MOBILE: number };
   }
 }
