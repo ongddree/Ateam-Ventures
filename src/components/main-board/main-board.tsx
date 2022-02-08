@@ -1,16 +1,16 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 // component
-import Card from '../card/card';
+import Card from "../card/card";
 // type
-import { RequestsArray } from '@/utils/api/data-types';
+import { RequestsArray } from "@/utils/api/data-types";
 // style
-import styled from 'styled-components';
-import { theme } from '@/styles/theme';
-import Toggle from '../common/toggle';
-import SelectFilter from '../filters/selectfilter';
-import TagButton from '../common/tagbutton';
+import styled from "styled-components";
+import { theme } from "@/styles/theme";
+import Toggle from "../common/toggle";
+import SelectFilter from "../filters/selectfilter";
+import TagButton from "../common/tagbutton";
 
 const MainBoard = () => {
   const [data, setData] = useState<RequestsArray | null>([]);
@@ -22,7 +22,7 @@ const MainBoard = () => {
   };
 
   const getData = async () => {
-    const json = await (await fetch('http://localhost:4000/requests')).json();
+    const json = await (await fetch("http://localhost:4000/requests")).json();
     setData(json);
   };
 
@@ -44,7 +44,7 @@ const MainBoard = () => {
 
             <Display>
               <SelectWarp>
-                <SelectFilter></SelectFilter>
+                <SelectFilter />
                 <TagButton onReset={onReset} />
               </SelectWarp>
               <ToggleWarp>
@@ -58,7 +58,7 @@ const MainBoard = () => {
           {data
             ?.filter((e) => {
               if (isConsulting) {
-                return e.status === '상담중';
+                return e.status === "상담중";
               } else {
                 return e;
               }
@@ -68,8 +68,15 @@ const MainBoard = () => {
                 <Card items={data} />
               </React.Fragment>
             ))}
-          {/* 빈 카드인 경우 page */}
         </CardWarp>
+
+        {/* `조건에 맞는 견적 요청이 없습니다` 페이지는 style 완료했습니다.
+        이 부분 조건식으로 처리해주시면 됩니다. *
+        {!data && (
+          <EmptyBox>
+            <span>조건에 맞는 견적 요청이 없습니다.</span>
+          </EmptyBox>
+        )} */}
       </Warpper>
     </Container>
   );
@@ -94,10 +101,14 @@ const Warpper = styled.div`
 `;
 
 const Header = styled.div`
-  width: 100%;
+  width: 1130px;
   height: 192px;
   color: ${theme.color.FONTCOLOR};
   margin-bottom: 32px;
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 
 const FilterWarp = styled.div`
@@ -114,6 +125,7 @@ const FilterWarp = styled.div`
 const Display = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
     flex-direction: column;
@@ -167,8 +179,9 @@ const SelectWarp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-bottom: 20px;
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const CardWarp = styled.div`
@@ -213,5 +226,26 @@ const CardWarp = styled.div`
     grid-template-columns: repeat(1, 1fr);
     gap: 16px;
     margin-bottom: 16px;
+  }
+`;
+
+// `조건에 맞는 견적 요청이 없습니다` style component
+const EmptyBox = styled.div`
+  width: 1130px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${theme.color.DARKGRAY};
+  border-radius: 4px;
+
+  > span {
+    font-size: 14px;
+    line-height: 20px;
+    color: ${theme.color.FONTGRAY};
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
   }
 `;
