@@ -1,9 +1,8 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 
 interface IToggle {
-  // isToggled: boolean | true;
   onToggle: () => void;
 }
 
@@ -12,9 +11,7 @@ function Toggle(props: IToggle): ReactElement {
     <ToggleContainer>
       <input
         type="checkbox"
-        // checked={props.isToggled}
         onChange={props.onToggle}
-        // {...props}
       />
       <ToggleSpan />
     </ToggleContainer>
