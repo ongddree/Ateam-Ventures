@@ -14,7 +14,7 @@ import TagButton from '../common/tagbutton';
 // import Filters from '../filters/filters';
 
 const MainBoard = () => {
-  const [data, setData] = useState<RequestsArray | null>([]);
+  const [data, setData] = useState<RequestsArray | null>();
   const [isConsulting, setIsConsulting] = useState(false);
 
   const [isChecked, setIsChecked] = useState(0);
@@ -32,7 +32,6 @@ const MainBoard = () => {
     // checked
     if (checked) {
       setCheckedMethod([...checkedMethod, name]);
-      console.log('name', name);
 
       // !checked
     } else {
@@ -55,15 +54,32 @@ const MainBoard = () => {
   };
 
   // data => 배열[{}]
-  // filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환합니다.
+  // filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환
+  // indexOf() 메서드는 배열의 특정한 값을 갖는 문자열을 갖고 있는 인덱스 번호를 반환
 
-  const showFilteredMethod = () => {
-    //
+  const hadleFilteredMethod = (event: React.FormEvent<HTMLInputElement>) => {
+    // const { name } = event.target as HTMLInputElement;
+
     if (checkedMethod.length === 0) {
       setData(data);
     } else {
+      for (let i = 0; i < checkedMethod.length; i++) {
+        if (!!data?.[i].method.filter((x) => !checkedMethod.includes(x))) {
+          setData(data);
+        }
+      }
     }
   };
+
+  console.log('data', data);
+  console.log(
+    '필터조건',
+    data?.filter((item) => {
+      item.method.map((temp) => {
+        console.log(temp);
+      });
+    })
+  );
 
   const getData = async () => {
     const json = await (await fetch('http://localhost:4000/requests')).json();
@@ -79,6 +95,7 @@ const MainBoard = () => {
     setCheckedMaterial([]);
   };
 
+  // console.log('data', data?.[0].method.includes('밀링'));
   console.log('checkedMethod', checkedMethod);
   console.log('checkedMaterial', checkedMaterial);
 
@@ -123,6 +140,13 @@ const MainBoard = () => {
                 return e;
               }
             })
+            // ?.filter((e) => {
+            //   if (true) {
+            //     return e.method === checkedMethod;
+            //   } else {
+            //     return e;
+            //   }
+            // })
             .map((data, idx) => (
               <React.Fragment key={idx}>
                 <Card items={data} />
