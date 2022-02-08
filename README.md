@@ -3,10 +3,15 @@
 ## 프로젝트 소개
 
 - typescript로 안정적인 개발 환경 구현
+
 - json-server를 이용한 mock rest-api server 연동
+
 - 에이팀벤처스의 파트너 요청 페이지, 필터 같은 옵션에 따라 해당하는 아이템만 받아올 수 있는 페이지 구현
+
 - UI 라이브러리를 사용하지 않고 직접 구현
+
 - 미디어 쿼리로 모바일에서도 가독성이 높은 반응형 페이지 구현
+
 
 ## 팀원 소개
 
@@ -36,13 +41,20 @@
 ### (민지연)
 
 ☑️ json-server & dev-server 세팅하여 가상의 데이터 서버를 구성할 수 있도록 구현
+
 ☑️ json-server로 mock rest-api server 연동
+
 ☑️ mock rest-api로 data 호출 및 type 지정
-☑️ data 매핑
+
 ☑️ theme, global style 지정
+
 ☑️ 대시보드 메인 UI 스타일링
+
 ☑️ 대시보드 메인 반응형 UI 스타일링
+
 ☑️ 대시보드 Modal UI 및 기능 구현
+
+<br/>
 
 ## 프로젝트 과정 소개
 
