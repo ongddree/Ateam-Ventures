@@ -1,7 +1,7 @@
-import React from 'react';
-import { IRequests } from '@/utils/api/data-types';
-import styled from 'styled-components';
-import { theme } from '@/styles/theme';
+import React from "react";
+import { IRequests } from "@/utils/api/data-types";
+import styled from "styled-components";
+import { theme } from "@/styles/theme";
 
 const Card = (props: { items: IRequests }) => {
   return (
@@ -13,13 +13,10 @@ const Card = (props: { items: IRequests }) => {
             <h3>{props.items.client}</h3>
             <span>{props.items.due}</span>
           </TitleWarp>
-          {/* {props.isToggled === true && ( */}
           <IsConsult status={props.items.status}>
             <span>{props.items.status}</span>
           </IsConsult>
-          {/* )} */}
         </Header>
-
         <Diveder></Diveder>
         <ListWarp>
           <li>
@@ -32,11 +29,11 @@ const Card = (props: { items: IRequests }) => {
           </li>
           <li>
             <Category>가공방식</Category>
-            <Contents>{props.items.method.join(', ')}</Contents>
+            <Contents>{props.items.method.join(", ")}</Contents>
           </li>
           <li>
             <Category>재료</Category>
-            <Contents>{props.items.material.join(', ')}</Contents>
+            <Contents>{props.items.material.join(", ")}</Contents>
           </li>
         </ListWarp>
         <BrnWarp>
@@ -68,6 +65,11 @@ const CardWarp = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    width: 320px;
+    height: 344px;
+  }
 `;
 
 const Header = styled.div`
@@ -104,7 +106,7 @@ const TitleWarp = styled.div`
 const IsConsult = styled.div<{ status: string }>`
   width: 55px;
   height: 24px;
-  display: ${(props) => (props.status === '상담중' ? 'flex' : 'none')};
+  display: ${(props) => (props.status === "상담중" ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   background: #ffffff;
@@ -128,6 +130,10 @@ const Diveder = styled.div`
   width: 334px;
   height: 0px;
   border: 1px solid #e5e5e5;
+
+  @media screen and (max-width: ${({ theme }) => theme.size.MOBILE}px) {
+    width: 288px;
+  }
 `;
 
 const ListWarp = styled.ul`
@@ -155,7 +161,6 @@ const Contents = styled.span`
 const BrnWarp = styled.div`
   button {
     border: 1px solid ${theme.color.SKY};
-
     height: 32px;
     flex-shrink: 0;
     border-radius: 4px;

@@ -1,21 +1,15 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { theme } from '@/styles/theme';
+import React, { ReactElement } from "react";
+import styled from "styled-components";
+import { theme } from "@/styles/theme";
 
 interface IToggle {
-  // isToggled: boolean | true;
   onToggle: () => void;
 }
 
 function Toggle(props: IToggle): ReactElement {
   return (
     <ToggleContainer>
-      <input
-        type="checkbox"
-        // checked={props.isToggled}
-        onChange={props.onToggle}
-        // {...props}
-      />
+      <input type="checkbox" onChange={props.onToggle} />
       <ToggleSpan />
     </ToggleContainer>
   );
@@ -29,16 +23,16 @@ const ToggleContainer = styled.label`
   width: 35px;
   height: 15px;
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     display: none;
   }
 
-  input[type='checkbox']:checked + span::before {
+  input[type="checkbox"]:checked + span::before {
     transform: translateX(15px);
     background-color: ${theme.color.LIGHTBLUE};
   }
 
-  input[type='checkbox']:checked + span {
+  input[type="checkbox"]:checked + span {
     background-color: ${theme.color.LIGHTSKY};
   }
 `;
@@ -56,7 +50,7 @@ const ToggleSpan = styled.span`
 
   ::before {
     position: absolute;
-    content: '';
+    content: "";
     left: 0;
     top: -3px;
     width: 21px;
