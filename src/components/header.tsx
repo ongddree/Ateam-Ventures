@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { theme } from '../styles/theme';
-import { TitleLOGO } from '../assets/image'
-import { VectorLOGO } from '../assets/image';
+import { theme } from '@/styles/theme';
+import { TitleLOGO } from '@/assets/image'
+import { VectorLOGO } from '@/assets/image';
 
 function Header(): ReactElement {
   return (
