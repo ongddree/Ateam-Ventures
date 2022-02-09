@@ -23,7 +23,7 @@ const MainBoard = () => {
 
   const getData = async () => {
     const json = await (
-      await fetch("https://ateam-vantures.herokuapp.com/")
+      await fetch("https://ateamventures.herokuapp.com/")
     ).json();
     setData(json);
   };
