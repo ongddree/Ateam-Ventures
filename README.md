@@ -1,6 +1,9 @@
-# 원티드 프리 온보딩 - 견적 요청 페이지 구현
+# ✔️ 원티드 프리 온보딩 - 견적 요청 페이지 구현
 
-## 에이팀벤처스 / 견적 요청 페이지 구현
+## 에이팀벤처스
+
+![에이팀벤처스ᅳ](https://user-images.githubusercontent.com/53133662/153177356-da26b823-1757-4287-80f9-46c8cba92e90.png)
+
 
 ## 프로젝트 소개
 
@@ -10,7 +13,7 @@
 
 - json-server & mock rest-api server 연동 및 배포
 
-- 에이팀벤처스의 파트너 요청 페이지, 필터 같은 옵션에 따라 해당하는 아이템만 받아올 수 있는 페이지 구현
+- 파트너 요청 페이지, 필터 같은 옵션에 따라 해당하는 아이템만 받아올 수 있는 페이지 구현
 
 - UI 라이브러리를 사용하지 않고 직접 구현
 
@@ -99,7 +102,11 @@
 
 ☑️ 상담중 토글
 
-![상담중 토글](https://user-images.githubusercontent.com/53133662/153101561-95d3fc9c-9b9a-4907-8f04-3d7273f4c820.gif)
+![상담중 토글](https://user-images.githubusercontent.com/84560867/153098751-fe488eee-27e8-4b51-81df-d6e1b6ceb789.gif)
+
+☑️ 모바일 버전 모달
+
+![모바일 버전 모달](https://user-images.githubusercontent.com/53133662/153101561-95d3fc9c-9b9a-4907-8f04-3d7273f4c820.gif)
 
 ## 프로젝트 과정 소개
 
