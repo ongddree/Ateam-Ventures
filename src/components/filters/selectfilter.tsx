@@ -4,12 +4,12 @@ import { ArrowDropDownGray } from '@/assets/image';
 import { ArrowDropDownWhite } from '@/assets/image';
 import { theme } from '@/styles/theme';
 
-const METHODS = [
+export const METHODS = [
   { id: 0, name: '밀링' },
-  { id: 1, name: '선방' },
+  { id: 1, name: '선반' },
 ];
 
-const MATERIALS = [
+export const MATERIALS = [
   { id: 0, name: '알루미늄' },
   { id: 1, name: '탄소강' },
   { id: 2, name: '구리' },
@@ -17,15 +17,22 @@ const MATERIALS = [
   { id: 4, name: '강철' },
 ];
 
+interface typeMethod {
+  checkedMethod: string[];
+  setCheckedMethod: React.Dispatch<React.SetStateAction<string[]>>;
+  handleCheckMethod: (event: React.FormEvent<HTMLInputElement>) => void;
+  checkedMaterial: string[];
+  setCheckedMaterial: React.Dispatch<React.SetStateAction<string[]>>;
+  handleCheckMaterial: (event: React.FormEvent<HTMLInputElement>) => void;
+}
+
 interface FocusType {
   select: number;
   active: string;
   inactive: string;
 }
 
-const SelectFilter = () => {
-  const [checkedMethod, setCheckedMethod] = React.useState<string[]>([]);
-  const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
+const SelectFilter = (props: typeMethod) => {
   const [materialToggle, setMaterialToggle] = useState(0);
   const [methodToggle, setMethodToggle] = useState(0);
 
@@ -37,40 +44,18 @@ const SelectFilter = () => {
     methodToggle ? setMethodToggle(0) : setMethodToggle(1);
   };
 
-  const handleCheckMethod = (event: React.FormEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target as HTMLInputElement;
-    if (checked) {
-      setCheckedMethod([...checkedMethod, name]);
-    } else {
-      setCheckedMethod(checkedMethod.filter((option) => option !== name));
-    }
-  };
-
-  const handleCheckMaterial = (event: React.FormEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target as HTMLInputElement;
-
-    if (checked) {
-      setCheckedMaterial([...checkedMaterial, name]);
-    } else {
-      setCheckedMaterial(checkedMaterial.filter((option) => option !== name));
-    }
-  };
-
-  console.log('method', checkedMethod);
-  console.log('material', checkedMaterial);
-
   return (
     <Wrapselect>
       <Selectbox>
         <Btnselect
-          select={checkedMethod.length}
+          select={props.checkedMethod.length}
           onClick={handleMethodToggle}
           active={ArrowDropDownWhite}
           inactive={ArrowDropDownGray}
         >
           <span>가공방식</span>
-          <Countitem select={checkedMethod.length}>
-            ({checkedMethod.length})
+          <Countitem select={props.checkedMethod.length}>
+            ({props.checkedMethod.length})
           </Countitem>
         </Btnselect>
         <Itemlist mode={methodToggle}>
@@ -80,8 +65,8 @@ const SelectFilter = () => {
                 <Input
                   type="checkbox"
                   name={option.name}
-                  onChange={handleCheckMethod}
-                  checked={checkedMethod.includes(option.name)}
+                  onChange={props.handleCheckMethod}
+                  checked={props.checkedMethod.includes(option.name)}
                 />
                 {option.name}
               </Item>
@@ -91,14 +76,14 @@ const SelectFilter = () => {
       </Selectbox>
       <Selectbox>
         <Btnselect
-          select={checkedMaterial.length}
+          select={props.checkedMaterial.length}
           onClick={handleMaterialToggle}
           active={ArrowDropDownWhite}
           inactive={ArrowDropDownGray}
         >
           재료
-          <Countitem select={checkedMaterial.length}>
-            ({checkedMaterial.length})
+          <Countitem select={props.checkedMaterial.length}>
+            ({props.checkedMaterial.length})
           </Countitem>
         </Btnselect>
         <Itemlist mode={materialToggle}>
@@ -108,8 +93,8 @@ const SelectFilter = () => {
                 <Input
                   type="checkbox"
                   name={option.name}
-                  onChange={handleCheckMaterial}
-                  checked={checkedMaterial.includes(option.name)}
+                  onChange={props.handleCheckMaterial}
+                  checked={props.checkedMaterial.includes(option.name)}
                 />
                 {option.name}
               </Item>
