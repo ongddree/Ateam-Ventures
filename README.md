@@ -99,7 +99,7 @@
 
 ☑️ 상담중 토글
 
-![상담중 토글](https://user-images.githubusercontent.com/84560867/153098751-fe488eee-27e8-4b51-81df-d6e1b6ceb789.gif)
+![상담중 토글](https://user-images.githubusercontent.com/53133662/153101561-95d3fc9c-9b9a-4907-8f04-3d7273f4c820.gif)
 
 ## 프로젝트 과정 소개
 
