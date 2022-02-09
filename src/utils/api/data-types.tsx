@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface IRequests {
   id: number;
@@ -12,7 +12,7 @@ export interface IRequests {
   status: string;
 }
 
-export type RequestsArray = IRequests[];
+export interface RequestsArray extends Array<IRequests> {}
 
 export type IGetData = React.Dispatch<
   React.SetStateAction<RequestsArray | null>

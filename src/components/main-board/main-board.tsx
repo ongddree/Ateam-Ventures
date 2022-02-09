@@ -1,28 +1,57 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 // component
-import Card from "../card/card";
+import Card from '../card/card';
 // type
-import { RequestsArray } from "@/utils/api/data-types";
+import { RequestsArray } from '@/utils/api/data-types';
 // style
-import styled from "styled-components";
-import { theme } from "@/styles/theme";
-import Toggle from "../common/toggle";
-import SelectFilter from "../filters/selectfilter";
-import TagButton from "../common/tagbutton";
+import styled from 'styled-components';
+import { theme } from '@/styles/theme';
+import Toggle from '../common/toggle';
+import SelectFilter from '../filters/selectfilter';
+import TagButton from '../common/tagbutton';
 
 const MainBoard = () => {
-  const [data, setData] = useState<RequestsArray | null>([]);
+  const [data, setData] = useState<RequestsArray | null>();
   const [isConsulting, setIsConsulting] = useState(false);
+
+  const [checkedMethod, setCheckedMethod] = React.useState<string[]>([]);
+  const [checkedMaterial, setCheckedMaterial] = React.useState<string[]>([]);
 
   const toggleConsulting = () => {
     isConsulting ? setIsConsulting(false) : setIsConsulting(true);
-    console.log(isConsulting);
+  };
+
+  const handleCheckMethod = (event: React.FormEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target as HTMLInputElement;
+    // checked
+    if (checked) {
+      setCheckedMethod([...checkedMethod, name]);
+
+      // !checked
+    } else {
+      setCheckedMethod(checkedMethod.filter((option) => option !== name));
+    }
+  };
+
+  const handleCheckMaterial = (event: React.FormEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target as HTMLInputElement;
+
+    // checked
+    if (checked) {
+      setCheckedMaterial([...checkedMaterial, name]);
+
+      // !checked
+    } else {
+      setCheckedMaterial(checkedMaterial.filter((option) => option !== name));
+    }
   };
 
   const getData = async () => {
-    const json = await (await fetch("http://localhost:4000/requests")).json();
+    const json = await (
+      await fetch('https://onbasicventures.herokuapp.com/')
+    ).json();
     setData(json);
   };
 
@@ -30,7 +59,10 @@ const MainBoard = () => {
     getData();
   }, []);
 
-  const onReset = () => {};
+  const onReset = () => {
+    setCheckedMethod([]);
+    setCheckedMaterial([]);
+  };
 
   return (
     <Container>
@@ -44,7 +76,14 @@ const MainBoard = () => {
 
             <Display>
               <SelectWarp>
-                <SelectFilter />
+                <SelectFilter
+                  checkedMethod={checkedMethod}
+                  setCheckedMethod={setCheckedMethod}
+                  handleCheckMethod={handleCheckMethod}
+                  checkedMaterial={checkedMaterial}
+                  setCheckedMaterial={setCheckedMaterial}
+                  handleCheckMaterial={handleCheckMaterial}
+                />
                 <TagButton onReset={onReset} />
               </SelectWarp>
               <ToggleWarp>
@@ -58,10 +97,30 @@ const MainBoard = () => {
           {data
             ?.filter((e) => {
               if (isConsulting) {
-                return e.status === "상담중";
+                return e.status === '상담중';
               } else {
                 return e;
               }
+            })
+            .filter((item, idx) => {
+              if (checkedMethod.length === 0) return true;
+
+              let methodIntersection = item.method.filter((x) =>
+                checkedMethod.includes(x)
+              );
+
+              if (methodIntersection.length === checkedMethod.length)
+                return true;
+            })
+            .filter((item, idx) => {
+              if (checkedMaterial.length === 0) return true;
+
+              let materialIntersection = item.material.filter((x) =>
+                checkedMaterial.includes(x)
+              );
+
+              if (materialIntersection.length === checkedMaterial.length)
+                return true;
             })
             .map((data, idx) => (
               <React.Fragment key={idx}>
