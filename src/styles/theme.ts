@@ -6,16 +6,16 @@ const theme: DefaultTheme = {
   color: {
     WHITE: "#ffffff",
     BLACK: "#000000",
-    BLUE: "#1565C0", // header
-    SKY: "#2196F3", // button
-    GRAY: "#E5E5E5", // border
-    LIGHTGRAY: "#F5F5F5", // offToggle
-    DARKGRAY: "#C2C2C2", // offToggleBG
-    LIGHTBLUE: "#2196F3", // onToggle
-    LIGHTSKY: "#BBDEFB", // onToggleBG
-    ORANGE: "#FFA000", // orangebutton
-    FONTCOLOR: "#323D45", // main board font color
-    FONTGRAY: "#939FA5", // sub font color
+    BLUE: "#1565C0",
+    SKY: "#2196F3",
+    GRAY: "#E5E5E5",
+    LIGHTGRAY: "#F5F5F5",
+    DARKGRAY: "#C2C2C2",
+    LIGHTBLUE: "#2196F3",
+    LIGHTSKY: "#BBDEFB",
+    ORANGE: "#FFA000",
+    FONTCOLOR: "#323D45",
+    FONTGRAY: "#939FA5",
   },
 
   size: {
