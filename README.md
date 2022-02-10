@@ -149,5 +149,6 @@ $ yarn
 **서버 실행**
 
 ```
-$ yarn dev
+$ yarn dev // json-server 실행
+$ yarn start:dev // localhost 싫행
 ```
