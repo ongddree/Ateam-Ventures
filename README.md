@@ -150,5 +150,5 @@ $ yarn
 
 ```
 $ yarn dev // json-server 실행
-$ yarn start:dev // localhost 싫행
+$ yarn start:dev // localhost 실행
 ```
