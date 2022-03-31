@@ -57,8 +57,6 @@ $ yarn start:dev // localhost 실행
 
 ☑️ '상담 중인 요청만 보기' 토글을 활성화하면 대시보드에 '상담중' 뱃지가 달려있는 카드만 노출함
 
-☑️ 체크박스 filter UI 구현
-
 ☑️ 셀렉트박스 UI 구현
 
 ☑️ hover 이벤트 발생 시 checkbox filter 스타일링 적용
@@ -67,7 +65,7 @@ $ yarn start:dev // localhost 실행
 
 ☑️ 옵션 선택 시 옵션 합계가 노출됨
 
-☑️ 옵션을 선택했을 경우 셀렉트박스 스타일 적용(선택된 옵션이 없을 경우 디폴트 스타일 적용)
+☑️ 옵션을 선택했을 경우 셀렉트박스 스타일 적용(선택된 옵션이 없을 경우 기본 스타일 적용)
 
 
 <br/>
@@ -80,9 +78,6 @@ $ yarn start:dev // localhost 실행
 
 ![셀렉트박스 카테고리별 액션](https://user-images.githubusercontent.com/84560867/153098729-6d8813c6-80c6-4b5c-8c92-2f110f74da35.gif)
 
-☑️ 필터링 리셋
-
-![필터링 리셋](https://user-images.githubusercontent.com/84560867/153098741-fa813733-bcae-4d21-b01a-baf33db397a8.gif)
 
 ☑️ 상담중 토글
 
